@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cuenta Regresiva Bautizo</title>
+<style>
+    body {
+        background-color: #fff5f7;
+        color: #be676c;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        padding: 40px 20px;
+        margin: 0;
+    }
+    h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+    h2 {
+        font-weight: 300;
+        margin-bottom: 30px;
+    }
+    #countdown {
+        font-size: 28px;
+        font-weight: 600;
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(190, 103, 108, 0.4);
+        display: inline-block;
+        min-width: 320px;
+        visibility: hidden;
+    }
+    #countdown.visible {
+        visibility: visible;
+        transition: visibility 0.5s ease-in;
+    }
+</style>
+</head>
+<body>
+
+<h1>Bautizo de Valentina</h1>
+<h2>¡Cada día más cerca!</h2>
+
+<div id="countdown">Faltan ...</div>
+
+<script>
+    function updateCountdown() {
+        const countdownDate = new Date("August 16, 2025 00:00:00").getTime();
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        if (distance <= 0) {
+            document.getElementById("countdown").innerHTML = "¡El gran día ha llegado!";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        const text = `Faltan ${days} día${days !== 1 ? 's' : ''}, ${hours} hora${hours !== 1 ? 's' : ''}, ${minutes} minuto${minutes !== 1 ? 's' : ''} y ${seconds} segundo${seconds !== 1 ? 's' : ''}`;
+
+        const countdownEl = document.getElementById("countdown");
+        countdownEl.innerHTML = text;
+        countdownEl.classList.add("visible");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
